@@ -9,7 +9,7 @@ import {ElMessage} from "element-plus";
 const userInfoStore = UserInfoStore()
 const router = useRouter()
 
-const credentials = reactive({})
+const credentials = reactive({username: "wangjianwei", password: "123456"})
 
 const login = async () => {
   const data = await loginApi(credentials)
@@ -24,14 +24,13 @@ const login = async () => {
 </script>
 
 <template>
-  <div class="LoginPage">
+  <div class="LoginPage" @keydown.enter="login()">
     <el-row class="LoginBox">
       <el-col :span="6">
         <el-card class="box-card">
           <template #header>
             <div class="card-header">
               <span>登录</span>
-              <el-button class="button" text>Operation button</el-button>
             </div>
           </template>
           <el-form :model="credentials" label-width="80px">
@@ -44,7 +43,7 @@ const login = async () => {
           </el-form>
 
           <template #footer>
-            <el-button @click="login()">登录</el-button>
+            <el-button color="#626aef" @click="login()">登录</el-button>
           </template>
         </el-card>
       </el-col>
